@@ -10,18 +10,60 @@
 <body>
     <div id="map" style="width: 100%; height: 600px;"></div>
     <script>
-        var map = L.map('map').setView([51.505, -0.09], 6); // Centered around UK
+        var map = L.map('map').setView([54.0, -2.0], 6); // Centered around the UK
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
         var locations = [
-            {lat: 51.5074, lon: -0.1278, name: "London - Broadwick Soho Hotel", details: "Platinum Black Electric Heaters on Roof Terrace"},
-            {lat: 53.3498, lon: -6.2603, name: "Dublin - Fish City", details: "3 x Portable Gas"},
-            {lat: 55.9533, lon: -3.1883, name: "Edinburgh - Prime Steak Food", details: "2 x 6kW Black Tungsten"},
-            {lat: 54.5973, lon: -5.9301, name: "Belfast - Coffeco", details: "2 x Tungsten Gas 3 Burner"},
-        ];
+    { lat: 51.5136, lon: -0.135, name: "Broadwick Soho Hotel", details: "Platinum Black Electric Heaters on Roof Terrace" },
+    { lat: 51.5136, lon: -0.135, name: "Dear Jackie Italian Restaurant", details: "Platinum Black Electric Heaters on Roof Terrace" },
+    { lat: 51.652, lon: -0.201, name: "Bottannika Restaurant", details: "8 x 3kW Black Tungstens" },
+    { lat: 54.6025, lon: -5.928, name: "Fish City", details: "3 x Portable Gas" },
+    { lat: 52.884, lon: -0.640, name: "The Brownlow Arms", details: "2 x Portable Gas" },
+    { lat: 54.073, lon: -2.005, name: "Coffeco", details: "2 x Tungsten Gas 3 Burner" },
+    { lat: 57.4778, lon: -4.2247, name: "Prime Steak Food", details: "2 x 6kW Black Tungsten" },
+    { lat: 52.059, lon: 1.048, name: "The Marquis Of Cornwallis", details: "7 x Portable Gas" },
+    { lat: 52.155, lon: 1.248, name: "Catts Hill Farmhouse", details: "Tungsten White 4kW x 8" },
+    { lat: 53.796, lon: -1.546, name: "Livin Italy", details: "Tungsten Gas 5 Burner" },
+    { lat: 52.634, lon: -1.132, name: "The Lancaster Arms", details: "2 x Portable Gas" },
+    { lat: 51.5118, lon: -0.123, name: "Buns & Buns", details: "29 x 2.3kW Platinum Black Electric + Wireless Dimmers" },
+    { lat: 51.5132, lon: -0.122, name: "Nomad Hotel London", details: "4 x 2.3kW Platinum Black" },
+    { lat: 51.5097, lon: -0.146, name: "Maine Restaurant", details: "8 x 3400W Platinum Black" },
+    { lat: 51.5261, lon: -0.1854, name: "The Waterway", details: "Platinum Gas 5 Burner" },
+    { lat: 51.5069, lon: -0.1257, name: "Corinthia Garden Lounge", details: "Portable Gas" },
+    { lat: 51.5111, lon: -0.121, name: "J Sheekey", details: "Tungsten Electric" },
+    { lat: 51.5344, lon: -0.1253, name: "Parrillan", details: "Platinum Gas & Tungsten Electric" },
+    { lat: 51.4906, lon: -0.1576, name: "The Ivy Chelsea Garden", details: "Tungsten Electric" },
+    { lat: 51.5106, lon: -0.137, name: "Aubaine", details: "Tungsten Electric (Black)" },
+    { lat: 51.489, lon: -0.210, name: "The Queens Club", details: "Tungsten Electric (White)" },
+    { lat: 51.5195, lon: -0.138, name: "Mortimer House", details: "Tungsten Electric 3kW x 7 Black" },
+    { lat: 51.5226, lon: -0.153, name: "Delamina", details: "2kW Tungstens Black" },
+    { lat: 51.534, lon: -0.125, name: "Tom Dixon", details: "10 x Tungsten 2kW Black" },
+    { lat: 51.534, lon: -0.125, name: "Vermuteria", details: "4kW & 6kW Black Tungstens" },
+    { lat: 51.515, lon: -0.174, name: "Daisy Green (Bondi Green)", details: "Tungsten Electric" },
+    { lat: 51.5195, lon: -0.131, name: "Dalloway Terrace", details: "Tungsten Electric (Black)" },
+    { lat: 51.5172, lon: -0.146, name: "The Marylebone Hotel", details: "Tungsten Electric (Black)" },
+    { lat: 51.5291, lon: -0.127, name: "The Standard, London", details: "Tungsten Electric (Black)" },
+    { lat: 51.5091, lon: -0.1405, name: "Momo Restaurant", details: "4kW Tungstens" },
+    { lat: 51.5241, lon: -0.0743, name: "Allpress Espresso", details: "4 x 4kW Tungsten Black" },
+    { lat: 51.4645, lon: -0.2147, name: "Coppa Club", details: "White Tungstens - 8 x 3kW, 3 x 2kW" },
+    { lat: 51.514, lon: -0.196, name: "Granger & Co", details: "2 x Platinum White" },
+    { lat: 51.9143, lon: -1.6928, name: "Feathered Nest", details: "2 x Portable Gas + Tungsten Electric 3kW Black" },
+    { lat: 51.9693, lon: -1.3906, name: "Soho Farm", details: "Tungsten Electric (Black)" },
+    { lat: 54.6685, lon: -2.7657, name: "Larch Cottage Nurseries", details: "5 x SMART-S" },
+    { lat: 51.7532, lon: -0.3364, name: "The Ivy", details: "3 x 3400W Platinum Black" },
+    { lat: 51.7523, lon: -0.3325, name: "Wafflehouse", details: "1 x Portable Gas" },
+    { lat: 51.375, lon: -0.512, name: "Queenwood Golf Club", details: "7 x Portable Gas" },
+    { lat: 53.391, lon: -2.597, name: "Hideout", details: "3 x 3kW Black Tungstens" },
+    { lat: 51.061, lon: -1.316, name: "The Old Vine", details: "2 x Portable Gas" },
+    { lat: 51.548, lon: -0.126, name: "Two Tribes Campfire", details: "13 x Platinum Gas" },
+    { lat: 51.504, lon: -0.091, name: "Parrillan Borough Yards", details: "6kW Tungstens" },
+    { lat: 51.491, lon: -0.159, name: "Villa Mammas", details: "3 x Eclipse Pendants Outside" },
+    { lat: 55.859, lon: -4.250, name: "Kong", details: "12 x 6kW Roof Top Terrace" }
+];
+
 
         locations.forEach(function(location) {
             L.marker([location.lat, location.lon]).addTo(map)
