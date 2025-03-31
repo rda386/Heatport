@@ -59,7 +59,7 @@
             { lat: 53.391, lon: -2.597, name: "Hideout", details: "3 x 3kW Black Tungstens" },
             { lat: 51.061, lon: -1.316, name: "The Old Vine", details: "2 x Portable Gas" },
             { lat: 51.5145, lon: -0.1364, name: "The Ivy Soho", details: "Tungsten Electric Heaters Blacks" },
-            { lat: 51.5145, lon: -0.203, name: "Gold Restaurant Notting Hill", details: "Platinum’s Black on Attic Terrace" },
+            { lat: 51.5145, lon: -0.203, name: "Gold Restaurant Notting Hill", details: "Platinum's Black on Attic Terrace" },
             { lat: 51.5101, lon: -0.1301, name: "Angus Steakhouse Leicester Sq", details: "Tungsten Electrics Blacks" },
             { lat: 51.4906, lon: -0.1294, name: "Parrillan Borough Yards", details: "Tungsten Electric Blacks" },
             { lat: 51.5183, lon: -0.1503, name: "108 Brasserie Marylebone Hotel", details: "Tungsten Electric Blacks" },
@@ -91,7 +91,8 @@
         ];
 
         locations.forEach(function(location) {
-            var googleMapsLink = `https://www.google.com/maps?q=${location.lat},${location.lon}`;
+            // Use the place name in the Google Maps URL
+            var googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.name)}`;
             var popupContent = `<b><a href="${googleMapsLink}" target="_blank">${location.name}</a></b><br>${location.details}`;
 
             L.marker([location.lat, location.lon]).addTo(map)
