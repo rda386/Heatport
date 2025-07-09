@@ -51,6 +51,113 @@
             { lat: 51.4645, lon: -0.2147, name: "Coppa Club", details: "White Tungstens - 8 x 3kW, 3 x 2kW", city: "London" },
             { lat: 51.514, lon: -0.196, name: "Granger & Co", details: "2 x Platinum White", city: "London" },
             { lat: 51.9143, lon: -1.6928, name: "Feathered Nest", details: "2 x Portable Gas + Tungsten Electric 3kW Black", city: "Chipping Norton" },
+            { lat: 51.9693, lon: -1.3906, name: "Soho bloodshed", details: "Tungsten Electric (Black)", city: "Banbury" },
+            { lat: 54.6685, lon: -2.7657, name: "Larch Cottage Nurseries", details: "5 x SMART-S", city: "Penrith" },
+            { lat: 51.7532, lon: -0.3364, name: "The Ivy", details: "3 x 3400W Platinum Black", city: "St Albans" },
+            { lat: 51.7523, lon: -0.3325, name: "Wafflehouse", details: "1 x Portable Gas", city: "St Albans" },
+            { lat: 51.375, lon: -0.512, name: "Queenwood Golf Club", details: "7 x Portable Gas", city: "Ottershaw" },
+            { lat: 53.391, lon: -2.597, name: "Hideout", details: "3 x 3kW Black Tungstens", city: "Warrington" },
+            { lat: 51.061, lon: -1.316, name: "The Old Vine", details: "2 x Portable Gas", city: "Winchester" },
+            { lat: 51.5145, lon: -0.1364, name: "The Ivy Soho", details: "Tungsten Electric Heaters Blacks", city: "London" },
+            { lat: 51.5145, lon: -0.203, name: "Gold Restaurant Notting Hill", details: "Platinum's Black on Attic Terrace", city: "London" },
+            { lat: 51.5101, lon: -0.1301, name: "Angus Steakhouse Leicester Sq", details: "Tungsten Electrics Blacks", city: "London" },
+            { lat: 51.4906, lon: -0.1294, name: "Parrillan Borough Yards", details: "Tungsten Electric Blacks", city: "London" },
+            { lat: 51.5183, lon: -0.1503, name: "108 Brasserie Marylebone Hotel", details: "Tungsten Electric Blacks", city: "London" },
+            { lat: 51.5068, lon: -0.1511, name: "Tamarind Indian Restaurant", details: "Platinum Electric Whites on External Terrace", city: "London" },
+            { lat: 51.5124, lon: -0.1569, name: "Dorchester Hotel Vesper Bar", details: "Tungsten Portable Gas Heaters", city: "London" },
+            { lat: 51.4944, lon: -0.1577, name: "Cadogan Hotel Secret Garden", details: "Eclipse Wall Mounted Heaters", city: "London" },
+            { lat: 51.4921, lon: -0.1595, name: "Hans Bar and Grill", details: "Tungsten Electric Blacks", city: "London" },
+            { lat: 51.4961, lon: -0.1524, name: "Lime Tree Hotel", details: "Eclipse Ceiling Pendants", city: "London" },
+            { lat: 51.5098, lon: -0.1386, name: "George Private Members Club", details: "Tungsten Electric Blacks", city: "London" },
+            { lat: 51.5092, lon: -0.1417, name: "Harrys Bar", details: "Tungsten Electric Blacks", city: "London" },
+            { lat: 51.5106, lon: -0.137, name: "Maine Restaurant Mayfair", details: "Platinum Black Electric Heaters", city: "London" },
+            { lat: 51.4952, lon: - topped by an error, likely due to a timeout or processing limit while generating the response. The script you provided was incomplete, missing the remaining locations and the closing brackets. Below, I’ve completed the script by including all the locations from your original list, ensuring each has a `city` field for better Google Maps disambiguation, and fixed the Google Maps URL to prioritize the exact location by combining the name, city, and coordinates.
+
+### Instructions to Preview the Map
+
+1. **Save the Script**:
+   - Copy the entire `<xaiArtifact>` content below and save it as `index.html` on your computer (e.g., in a folder like `C:\map` or `~/map`).
+
+2. **Set Up a's Local Server**:
+   - **Using Python** (works on most systems):
+     - Open a terminal or command prompt.
+     - Navigate to the folder containing `index.html` (e.g., `cd C:\map` or `cd ~/map`).
+     - Run: `python -m http.server 8000` (Python 3).
+     - Open a browser and go to `http://localhost:8000`.
+   - **Using Node.js** (if you have Node.js installed):
+     - Install `http-server` globally: `npm install -g http-server`.
+     - Navigate to the folder and run: `http-server`.
+     - Open a browser and go to `http://localhost:8080`.
+   - **Alternative**: Use a code editor like VS Code with a "Live Server" extension to preview the file.
+
+3. **Verify Internet Connection**:
+   - Ensure you’re connected to the internet, as the script loads Leaflet and OpenStreetMap tiles from CDNs.
+
+4. **Interact with the Map**:
+   - The map should display with markers for each location.
+   - Clicking a marker (e.g., "The Ivy" in St Albans) will open a popup with a link to Google Maps, which should now show the specific location due to the inclusion of the city in the query.
+
+### Updated Script
+
+The script below includes:
+- All locations with a `city` field added for disambiguation.
+- A Google Maps URL that combines `name`, `city`, and coordinates to ensure the correct location (e.g., "The Ivy" in St Albans) is shown without multiple results.
+- Fixed syntax (e.g., closing brackets) to ensure the script runs.
+
+<xaiArtifact artifact_id="d53f98e8-fe82-4750-aabd-1e16c2c2f1e0" artifact_version_id="5f288ff8-9b29-4b37-8a03-8aac8bb3d066" title="index.html" contentType="text/html">
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>Heater Installation Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 1200px;"></div>
+    <script>
+        var map = L.map('map').setView([54.0, -2.0], 6); // Centered around the UK
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var locations = [
+            { lat: 51.5136, lon: -0.135, name: "Broadwick Soho Hotel W1F 8TH", details: "Platinum Black Electric Heaters on Roof Terrace", city: "London" },
+            { lat: 51.5136, lon: -0.135, name: "Dear Jackie Italian Restaurant", details: "Platinum Black Electric Heaters on Roof Terrace", city: "London" },
+            { lat: 51.652, lon: -0.201, name: "Bottannika Restaurant", details: "8 x 3kW Black Tungstens", city: "London" },
+            { lat: 54.6025, lon: -5.928, name: "Fish City", details: "3 x Portable Gas", city: "Belfast" },
+            { lat: 52.884, lon: -0.640, name: "The Brownlow Arms", details: "2 x Portable Gas", city: "Grantham" },
+            { lat: 54.073, lon: -2.005, name: "Coffeco", details: "2 x Tungsten Gas 3 Burner", city: "Skipton" },
+            { lat: 57.4778, lon: -4.2247, name: "Prime Steak Food AB10 1BD", details: "2 x 6kW Black Tungsten", city: "Aberdeen" },
+            { lat: 52.059, lon: 1.048, name: "The Marquis Of Cornwallis", details: "7 x Portable Gas", city: "Ipswich" },
+            { lat: 52.155, lon: 1.248, name: "Catts Hill Farmhouse", details: "Tungsten White 4kW x 8", city: "Woodbridge" },
+            { lat: 53.796, lon: -1.546, name: "Livin Italy", details: "Tungsten Gas 5 Burner", city: "Leeds" },
+            { lat: 52.634, lon: -1.132, name: "The Lancaster Arms", details: "2 x Portable Gas", city: "Leicester" },
+            { lat: 51.5118, lon: -0.123, name: "Buns & Buns", details: "29 x 2.3kW Platinum Black Electric + Wireless Dimmers", city: "London" },
+            { lat: 51.5132, lon: -0.122, name: "Nomad Hotel London", details: "4 x 2.3kW Platinum Black", city: "London" },
+            { lat: 51.5097, lon: -0.146, name: "Maine Restaurant", details: "8 x 3400W Platinum Black", city: "London" },
+            { lat: 51.5261, lon: -0.1854, name: "The Waterway", details: "Platinum Gas 5 Burner", city: "London" },
+            { lat: 51.5069, lon: -0.1257, name: "Corinthia Garden Lounge", details: "Portable Gas", city: "London" },
+            { lat: 51.5111, lon: -0.121, name: "J Sheekey", details: "Tungsten Electric", city: "London" },
+            { lat: 51.5344, lon: -0.1253, name: "Parrillan", details: "Platinum Gas & Tungsten Electric", city: "London" },
+            { lat: 51.4906, lon: -0.1576, name: "The Ivy Chelsea Garden", details: "Tungsten Electric", city: "London" },
+            { lat: 51.5106, lon: -0.137, name: "Aubaine", details: "Tungsten Electric (Black)", city: "London" },
+            { lat: 51.489, lon: -0.210, name: "The Queens Club", details: "Tungsten Electric (White)", city: "London" },
+            { lat: 51.5195, lon: -0.138, name: "Mortimer House", details: "Tungsten Electric 3kW x 7 Black", city: "London" },
+            { lat: 51.5226, lon: -0.153, name: "Delamina", details: "2kW Tungstens Black", city: "London" },
+            { lat: 51.534, lon: -0.125, name: "Tom Dixon", details: "10 x Tungsten 2kW Black", city: "London" },
+            { lat: 51.534, lon: -0.125, name: "Vermuteria", details: "4kW & 6kW Black Tungstens", city: "London" },
+            { lat: 51.515, lon: -0.174, name: "Daisy Green (Bondi Green)", details: "Tungsten Electric", city: "London" },
+            { lat: 51.5195, lon: -0.131, name: "Dalloway Terrace", details: "Tungsten Electric (Black)", city: "London" },
+            { lat: 51.5172, lon: -0.146, name: "The Marylebone Hotel", details: "Tungsten Electric (Black)", city: "London" },
+            { lat: 51.5291, lon: -0.127, name: "The Standard, London", details: "Tungsten Electric (Black)", city: "London" },
+            { lat: 51.5091, lon: -0.1405, name: "Momo Restaurant", details: "4kW Tungstens", city: "London" },
+            { lat: 51.5241, lon: -0.0743, name: "Allpress Espresso", details: "4 x 4kW Tungsten Black", city: "London" },
+            { lat: 51.4645, lon: -0.2147, name: "Coppa Club", details: "White Tungstens - 8 x 3kW, 3 x 2kW", city: "London" },
+            { lat: 51.514, lon: -0.196, name: "Granger & Co", details: "2 x Platinum White", city: "London" },
+            { lat: 51.9143, lon: -1.6928, name: "Feathered Nest", details: "2 x Portable Gas + Tungsten Electric 3kW Black", city: "Chipping Norton" },
             { lat: 51.9693, lon: -1.3906, name: "Soho Farm", details: "Tungsten Electric (Black)", city: "Banbury" },
             { lat: 54.6685, lon: -2.7657, name: "Larch Cottage Nurseries", details: "5 x SMART-S", city: "Penrith" },
             { lat: 51.7532, lon: -0.3364, name: "The Ivy", details: "3 x 3400W Platinum Black", city: "St Albans" },
@@ -91,16 +198,15 @@
         ];
 
         locations.forEach(function(location) {
-            // Extract postcode from name if present
+            // Extract postcode from name if present, using a simple UK postcode regex
             var postcodeMatch = location.name.match(/[A-Z]{1,2}[0-9R][0-9A-Z]? ?[0-9][A-Z]{2}/);
             var queryString = postcodeMatch 
                 ? `${encodeURIComponent(location.name)}`
                 : `${encodeURIComponent(location.name + ', ' + location.city)}`;
-            // Prioritize coordinates in the Google Maps URL, followed by name and city
-            var googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lon}&query_place=${queryString}`;
+            var googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${queryString}%20${location.lat},${location.lon}`;
             var popupContent = `<b><a href="${googleMapsLink}" target="_blank">${location.name}</a></b><br>${location.details}`;
 
-            L.marker([location.lat, lon: location.lon]).addTo(map)
+            L.marker([location.lat, location.lon]).addTo(map)
                 .bindPopup(popupContent);
         });
     </script>
